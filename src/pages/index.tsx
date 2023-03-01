@@ -1,15 +1,9 @@
 import React from "react";
-import { List, Page, Icon, useNavigate } from "zmp-ui";
-import { useRecoilValue } from "recoil";
-import { userInfo } from "zmp-sdk";
-import { userState } from "../state";
+import { Page } from "zmp-ui";
 
-import UserCard from "../components/user-card";
 import { IndoorMap } from "../components/indoor-map";
 
 const HomePage: React.FunctionComponent = () => {
-  const user = useRecoilValue<userInfo>(userState);
-  const navigate = useNavigate();
   return (
     <Page className="page !p-0">
       <IndoorMap

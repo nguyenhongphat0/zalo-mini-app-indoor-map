@@ -1,7 +1,13 @@
 import { atom } from "recoil";
-import sdk, { userInfo } from "zmp-sdk";
+import { configAppView, getUserInfo } from "zmp-sdk/apis";
 
-export const userState = atom<userInfo>({
+configAppView({
+  hideIOSSafeAreaBottom: true,
+  hideAndroidBottomNavigationBar: true,
+  statusBarType: 'transparent'
+})
+
+export const userState = atom({
   key: "user",
-  default: sdk.login().then(() => sdk.getUserInfo().then(res => res.userInfo))
+  default: getUserInfo({}).then(res => res.userInfo)
 });

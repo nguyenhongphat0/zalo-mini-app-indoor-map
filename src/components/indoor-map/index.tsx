@@ -18,7 +18,13 @@ export interface IndoorMapProps {
 
 export const IndoorMap: FC<IndoorMapProps> = (props) => {
   return (
-    <MapContainer center={{ lat: props.center[0], lng: props.center[1] }} zoom={22} maxZoom={30} scrollWheelZoom={false} className="w-full h-full">
+    <MapContainer
+      center={{ lat: props.center[0], lng: props.center[1] }}
+      zoom={22}
+      maxZoom={30}
+      scrollWheelZoom={false}
+      className="w-screen h-screen"
+    >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FC } from "react";
-import { ImageOverlay, useMap } from "react-leaflet";
+import { useMap } from "react-leaflet";
 import L, { ImageOverlay as LeafletImageOverlay } from 'leaflet';
 
 import campus from '../../static/campus-1.png';
@@ -11,6 +11,7 @@ export const Overlay: FC = () => {
   const [topRight, setTopRight] = useState<[number, number]>([10.759147719162039, 106.74592573778534]);
   const [bottomLeft, setBottomLeft] = useState<[number, number]>([10.757391144831328, 106.7457275254822]);
   const [currentPivot, setCurrentPivot] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const delta = 0.00001;
@@ -56,11 +57,13 @@ export const Overlay: FC = () => {
       topRight,
       bottomLeft, {
       interactive: true,
-      attribution: "&copy; <a href='http://www.ign.es'>Instituto Geográfico Nacional de España</a>"
     }).addTo(map);
   }, [])
 
   return (
-    <></>
+    <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[1000]">
+      <img src={campus} className="hidden" onLoad={() => setLoading(false)} />
+      {loading && <span className="font-medium text-lg">Loading...</span>}
+    </div>
   )
 }
